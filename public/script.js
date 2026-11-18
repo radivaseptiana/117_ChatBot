@@ -16,3 +16,31 @@ function addMessage(text, sender) {
   return content;
 }
 
+chatForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  const message = userInput.value.trim();
+  if (!message) {
+    return;
+  }
+
+  // ========================
+  // Tampilkan pesan user
+  // ========================
+  addMessage(message, "user");
+  // Simpan pesan user
+  messages.push({
+    role: "user",
+    content: message,
+  });
+  // Kosongkan input
+  userInput.value = "";
+  // Disable input sementara
+  userInput.disabled = true;
+  const button = chatForm.querySelector("button");
+  button.disabled = true;
+  button.textContent = "Menunggu...";
+
+  // ========================
+  // Buat bubble AI kosong
+  // ========================
+  
